@@ -3,18 +3,23 @@
 
 <link name   = "base_link">
     <visual>
-        <origin xyz = "" rpy = ""/>
+        <origin xyz = "" rpy = "0 0 0"/>
         <geometry>
+        <box size = "" />
         </geometry>
+        <material name = "silver1">
+        <color rgba = "" />
+        </material>
     </visual>
     <inertial>
-        <origin xyz = "" rpy =""/>
+        <origin xyz = "" rpy ="0 0 0"/>
         <mass value =/>
-        <inertia ixx="" iyy="" izz="" ixy="" iyz="" izx="" />
+        <inertia ixx= "" iyy= "" izz= "" ixy= "" iyz= "" izx= "" />
     </inertial>
     <collision>
         <origin xyz = "" rpy = ""/>
         <geometry>
+        <box size = ""/>
         </geometry>
     </collision>
 </link>
@@ -26,11 +31,16 @@
 <visual>
     <origin xyz = "" rpy = "" />
     <geometry>
+        <box size = "" />
     </geometry>
+    <material name = "silver2">
+        <color rgba = "" />
+    </material>
 </visual>
 <collision>
     <origin xyz = "" rpy = "" />
     <geometry>
+        <box size = ""/>
     </geometry>
 </collision>
 <inertial>
@@ -43,10 +53,23 @@
 <!-- material aluminum -->
 <link name = "motor1_second_link">
 <visual>
+    <origin xyz = "" rpy = "" />
+    <geometry>
+        <box size = "" />
+    </geometry>
+    <material name = "silver3">
+        <color rgba = "" />
+    </material>
 </visual>
 <collision>
+    <origin xyz= "" rpy = "" />
+    <geometry>
+        <box size = "" />
+    </geometry>
 </collision>
 <inertial>
+    <mass value = />
+    <inertia ixx = "" iyy = "" izz = "" ixy = "" iyz = "" izx = "" />
 </inertial>
 </link>
 
@@ -54,37 +77,153 @@
 <!-- material aluminum -->
 <link name = "motor2_first_link">
 <visual>
+    <origin xyz = "" rpy = "0 0 0" />
+    <geometry>
+        <box size = "" />
+        <material name = "silver2" >
+        <color rgba = "" />
+        </material>
+    </geometry>
 </visual>
 <collision>
+    <origin xyz = "" rpy = "" />
+    <geometry>
+        <box size = "" />
+    </geometry>
 </collision>
 <inertial>
+    <mass value = />
+    <inertia ixx = "" iyy = "" izz = "" ixy = "" iyz = "" izx = "" />
 </inertial>
 </link>
 
 <!-- motor2 second link that goes between the second motor first revolute joint and second revolute joint-->
 <link name = "motor2_second_link">
 <visual>
+<origin xyz = "" rpy = "0 0 0" />
+    <geometry>
+        <box size = "" />
+        <material name = "silver3" >
+        <color rgba = ""/>
+        </material>
+    </geometry>
 </visual>
 <collision>
+    <origin xyz = "" rpy = "" />
+    <geometry>
+        <box size = "" />
+    </geometry>
 </collision>
 <inertial>
+    <mass value = />
+    <inertia ixx = "" iyy = "" izz = "" ixy = "" iyz = "" izx = "" />
 </inertial>
 </link>
+<!-- defining motors as links -->
+<!-- motor 1-->
+<link name = "motor1">
+<visual>
+    <geometry>
+        <mesh filename = "" scale = "" />
+    </geometry>
+    <material name = "">
+        <color rgba = "" />
+    </material>
+</visual>
+<collision>
+    <geometry>
+        <cylinder length = "" radius = "" />
+    </geometry>
+</collision>
+<inertial>
+    <mass value = />
+    <inertia ixx = "" iyy = "" izz = "" ixy = "" iyz = "" izx = "" />
+</inertial>
+</link>
+<!-- motor 2 -->
+<link name = "motor2">
+<visual>
+    <geometry>
+        <mesh filename = "" scale = "" />
+    </geometry>
+    <material name = >
+        <color rgba = "" />
+    </material>
+</visual>
+<inertial>
+    <mass value = />
+    <inertia ixx = "" iyy = "" izz = "" ixy = "" iyz = "" izx = "" />
+</inertial>
+<collision>
+    <geometry>
+        <cylinder length = "" radius = "" />
+    </geometry>
+</collision>
+</link>
 
-<link name = "motor1">  
+<!-- Revolute motor joint between the motor1 and the fixed base-->
+<joint name = "" type = "continuous" >
+    <axis xyz = "" />
+    <parent link  = "" />
+    <child link = "motor1" />
+    <origin xyz = "" rpy = "" />
+    <limit effort = "" velocity = "" />
+    <dynamics damping = "" friction = "" />
+</joint>
+<!-- Revolute motor joint between the motor2 and the fixed base-->
+<joint name = "" type = "continuous" >
+    <axis xyz = "" />
+    <parent link = "" />
+    <child link = "motor2" />
+    <origin xyz = "" rpy = "" />
+    <limit effort = "" velocity = "" />
+    <dynamics damping = "" friction = "" />
+</joint>
 
-<!--fixed joint base to first side link where firstmotor is attached-->
-<joint name = type = "fixed">
+<!--motor 1 and the motor1 first link joined together-->
+<joint name = "hip_joint1" type = "fixed">
+    <axis xyz = "" />
+    <parent link = "motor1"/>
+    <child link = "motor1_first_link"/>
+    <origin xyz = "" rpy = ""/>
+    <limit effort = "" velocity = "" />
+    <dynamics damping = "" friction = "" />
 </joint>
-<!-- fixed joint base to second side link where second motor is attached -->
-<joint name = type = "fixed">
+<!-- motor 2 and the motor2 first link joined together -->
+<joint name = "hip_joint2" type = "fixed">
+    <axis xyz = "" />
+    <parent link = "motor2"/>
+    <child link = "motor2_first_link"/>
+    <origin xyz =  "" rpy = ""/>
+    <limit effort = "" velocity = "" />
+    <dynamics damping = "" friction = "" />
 </joint>
 
-<!-- motor 1 joint to motor 1 first link-->
-<joint name = type = "continuous">
+<!-- Joint between the first link and the second link for motor 1-->
+<joint name = "knee_joint1" type = "continuous">
+    <parent link = "motor1_first_link"/>
+    <child link  = "motor1_second_link"/>
+    <origin xyz = "" rpy = ""/>
+    <axis xyz = />
+    <limit lower = "" upper = "" effort = ""/>
 </joint>
-<!-- motor 2 joint to motor 1 second link-->
-<joint name = type = "continuous">
+<!-- Joint between the first link and second link for motor 2-->
+<joint name = "knee_joint2" type = "continuous" >
+    <parent link = "motor2_first_link"/>
+    <child link = "motor2_second_link"/>
+    <origin xyz = "" rpy = ""/>
+    <axis xyz = />
+    <limit lower = "" upper = "" effort = ""  />
 </joint>
+
+
+<!-- don't know where to add this and how-->
+<!-- joint between both the second links-->
+<joint name = "" type = "revolute">
+    <parent link = ""/>
+    <child link = ""/>
+    <origin xyz = ""/>
+    <axis xyz = ""/>
+    <limit />
 </robot>
 
