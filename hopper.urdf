@@ -1,0 +1,90 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<robot name = minitaur_hopper>
+
+<link name   = "base_link">
+    <visual>
+        <origin xyz = "" rpy = ""/>
+        <geometry>
+        </geometry>
+    </visual>
+    <inertial>
+        <origin xyz = "" rpy =""/>
+        <mass value =/>
+        <inertia ixx="" iyy="" izz="" ixy="" iyz="" izx="" />
+    </inertial>
+    <collision>
+        <origin xyz = "" rpy = ""/>
+        <geometry>
+        </geometry>
+    </collision>
+</link>
+
+
+<!-- motor1_first link that goes between motor1 and first revolute joint-->
+<!-- material would be aluminum -->
+<link name = "motor1_first_link">
+<visual>
+    <origin xyz = "" rpy = "" />
+    <geometry>
+    </geometry>
+</visual>
+<collision>
+    <origin xyz = "" rpy = "" />
+    <geometry>
+    </geometry>
+</collision>
+<inertial>
+    <mass value = />
+    <inertia ixx="" iyy="" izz="" ixy="" iyz="" izx=""/>
+</inertial>
+</link>
+
+<!-- motor1 second link that goes between the first revolute joint and the second revolute joint-->
+<!-- material aluminum -->
+<link name = "motor1_second_link">
+<visual>
+</visual>
+<collision>
+</collision>
+<inertial>
+</inertial>
+</link>
+
+<!-- motor2 first link that goes between the motor 2 and the first revolute joint-->
+<!-- material aluminum -->
+<link name = "motor2_first_link">
+<visual>
+</visual>
+<collision>
+</collision>
+<inertial>
+</inertial>
+</link>
+
+<!-- motor2 second link that goes between the second motor first revolute joint and second revolute joint-->
+<link name = "motor2_second_link">
+<visual>
+</visual>
+<collision>
+</collision>
+<inertial>
+</inertial>
+</link>
+
+<link name = "motor1">  
+
+<!--fixed joint base to first side link where firstmotor is attached-->
+<joint name = type = "fixed">
+</joint>
+<!-- fixed joint base to second side link where second motor is attached -->
+<joint name = type = "fixed">
+</joint>
+
+<!-- motor 1 joint to motor 1 first link-->
+<joint name = type = "continuous">
+</joint>
+<!-- motor 2 joint to motor 1 second link-->
+<joint name = type = "continuous">
+</joint>
+</robot>
+
